@@ -11,7 +11,7 @@ var gh = new GitHub({
 //class
 var StoreAPI = function (config) {
     var jdata = [];
-    let repo = gh.getRepo('neocris','halcyonic');
+    let repo = gh.getRepo('neocris','friendica');
     var stParseError = function(){
         this.error = new Error("couldn't parse the provided obj");
     }
@@ -219,7 +219,7 @@ var StoreAPI = function (config) {
             repo.getContents('master','posts/posts.json',false,function(){}).then(function(j){
                 jdata = JSON.parse(atob(j.data.content));
                 jdata.forEach(function(jd){
-                    timeline_template(jd).prependTo('#conversation-end');
+                    $(timeline_template(jd)).prependTo('#conversation-end');
                 });
                 sync(jdata);
             });
